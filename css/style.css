@@ -5,39 +5,84 @@ body {
 a,
 input[type="submit"],
 input[type="button"],
-button{
+button {
 	-webkit-transition: color .3s ease-in, border-color .3s ease-in, background-color .3s ease-in, opacity .3s ease-in;
 	-moz-transition: color .3s ease-in, border-color .3s ease-in, background-color .3s ease-in, opacity .3s ease-in;
 	transition: color .3s ease-in, border-color .3s ease-in, background-color .3s ease-in, opacity .3s ease-in;
 }
 
-.checkers {
-	position: absolute;
-	top: 0; left: 0; bottom: 0; right: 0;
+.wrapper {
+	position:absolute;
+	top: 50px; right: 0; bottom: 0; left: 0;
 	margin: auto;
-	width: 45vw;
-	height: 45vw;
+	width: 90%;
+}
+
+.checkers-position,
+.checkers-float {
+	position: absolute;
+	top: 0; bottom: 0;
+	margin: auto 0;
+	width: 44vw;
+	height: 44vw;
 	padding: 1%;
 	background-color: #81351D;
 }
 
+.checkers-position {
+	left: 0;
+}
 
-.border {
+.checkers-float {
+	right: 0;
+}
+
+.checkers-position:before,
+.checkers-float:before {
+	position: absolute;
+	display: block;
+	top: -40px;
+	text-align: center;
+	width: 100%;
+	font-size: 30px;
+	text-transform: uppercase;
+	color: #FFF;
+}
+
+.checkers-position:before {
+	content: 'position';
+}
+
+.checkers-float:before {
+	content: 'float';
+}
+
+.checkers-position .border {
 	position: relative;
 }
 
-.border:before {
+.checkers-position .border:before {
 	content: '';
 	padding-bottom: 100%;
 	display: block;
 }
 
-.cell {
-	position: absolute;
+.checkers-position .cell,
+.checkers-float .cell {
 	width: 12.5%;
 	background-color: #D18B47;
 }
 
+.checkers-position .cell {
+	position: absolute;
+}
+
+.checkers-float .cell {
+	position: relative;
+	float: left;
+}
+
+.cell:before,
 .cell:before {
 	content: '';
 	padding-bottom: 100%;
@@ -59,16 +104,35 @@ button{
 
 .cell:nth-child(-n+8):nth-child(odd):after,
 .cell:nth-child(n+9):nth-child(-n+16):nth-child(even):after,
-.cell:nth-child(n+17):nth-child(-n+24):nth-child(odd):after {
-	background-color: black;
-	cursor: pointer;
-}
-
+.cell:nth-child(n+17):nth-child(-n+24):nth-child(odd):after,
 .cell:nth-child(n+41):nth-child(-n+48):nth-child(even):after,
 .cell:nth-child(n+49):nth-child(-n+56):nth-child(odd):after,
 .cell:nth-child(n+57):nth-child(-n+64):nth-child(even):after {
-	background-color: red;
 	cursor: pointer;
+}
+
+.checkers-position .cell:nth-child(-n+8):nth-child(odd):after,
+.checkers-position .cell:nth-child(n+9):nth-child(-n+16):nth-child(even):after,
+.checkers-position .cell:nth-child(n+17):nth-child(-n+24):nth-child(odd):after {
+	background-color: green;
+}
+
+.checkers-position .cell:nth-child(n+41):nth-child(-n+48):nth-child(even):after,
+.checkers-position .cell:nth-child(n+49):nth-child(-n+56):nth-child(odd):after,
+.checkers-position .cell:nth-child(n+57):nth-child(-n+64):nth-child(even):after {
+	background-color: red;
+}
+
+.checkers-float .cell:nth-child(-n+8):nth-child(odd):after,
+.checkers-float .cell:nth-child(n+9):nth-child(-n+16):nth-child(even):after,
+.checkers-float .cell:nth-child(n+17):nth-child(-n+24):nth-child(odd):after {
+	background-color: blue;
+}
+
+.checkers-float .cell:nth-child(n+41):nth-child(-n+48):nth-child(even):after,
+.checkers-float .cell:nth-child(n+49):nth-child(-n+56):nth-child(odd):after,
+.checkers-float .cell:nth-child(n+57):nth-child(-n+64):nth-child(even):after {
+	background-color: yellow;
 }
 
 .cell:hover:after {
@@ -76,6 +140,15 @@ button{
 	-webkit-transform: scale(1.05);
 		-ms-transform: scale(1.05);
  			transform: scale(1.05);
+}
+
+.cell:nth-child(-n+8):nth-child(odd):hover:after,
+.cell:nth-child(n+9):nth-child(-n+16):nth-child(even):hover:after,
+.cell:nth-child(n+17):nth-child(-n+24):nth-child(odd):hover:after,
+.cell:nth-child(n+41):nth-child(-n+48):nth-child(even):hover:after,
+.cell:nth-child(n+49):nth-child(-n+56):nth-child(odd):hover:after,
+.cell:nth-child(n+57):nth-child(-n+64):nth-child(even):hover:after {
+	box-shadow: 0px 4px 10px 0px #333;
 }
 
 .cell:nth-child(-n+8):nth-child(even),
@@ -89,66 +162,74 @@ button{
 	background-color: #FFCE9E;
 }
 
-.cell:nth-child(8n+1) {
+.checkers-position .cell:nth-child(8n+1) {
 	left: 0;
 }
 
-.cell:nth-child(8n+2) {
+.checkers-position .cell:nth-child(8n+2) {
 	left: 12.5%;
 }
 
-.cell:nth-child(8n+3) {
+.checkers-position .cell:nth-child(8n+3) {
 	left: 25%;
 }
 
-.cell:nth-child(8n+4) {
+.checkers-position .cell:nth-child(8n+4) {
 	left: 37.5%;
 }
 
-.cell:nth-child(8n+5) {
+.checkers-position .cell:nth-child(8n+5) {
 	left: 50%;
 }
 
-.cell:nth-child(8n+6) {
+.checkers-position .cell:nth-child(8n+6) {
 	left: 62.5%;
 }
 
-.cell:nth-child(8n+7) {
+.checkers-position .cell:nth-child(8n+7) {
 	left: 75%;
 }
 
-.cell:nth-child(8n+8) {
+.checkers-position .cell:nth-child(8n+8) {
 	left: 87.5%;
 }
 
-.cell:nth-child(-n+8) {
+.checkers-position .cell:nth-child(-n+8) {
 	top: 0;
 }
 
-.cell:nth-child(n+9):nth-child(-n+16) {
+.checkers-position .cell:nth-child(n+9):nth-child(-n+16) {
 	top: 12.5%;
 }
 
-.cell:nth-child(n+17):nth-child(-n+24) {
+.checkers-position .cell:nth-child(n+17):nth-child(-n+24) {
 	top: 25%;
 }
 
-.cell:nth-child(n+25):nth-child(-n+32) {
+.checkers-position .cell:nth-child(n+25):nth-child(-n+32) {
 	top: 37.5%;
 }
 
-.cell:nth-child(n+33):nth-child(-n+40) {
+.checkers-position .cell:nth-child(n+33):nth-child(-n+40) {
 	top: 50%;
 }
 
-.cell:nth-child(n+41):nth-child(-n+48) {
+.checkers-position .cell:nth-child(n+41):nth-child(-n+48) {
 	top: 62.5%;
 }
 
-.cell:nth-child(n+49):nth-child(-n+56) {
+.checkers-position .cell:nth-child(n+49):nth-child(-n+56) {
 	top: 75%;
 }
 
-.cell:nth-child(n+57):nth-child(-n+64) {
+.checkers-position .cell:nth-child(n+57):nth-child(-n+64) {
 	top: 87.5%;
+}
+
+@media screen and (max-width: 360px) {
+	.checkers-position:before,
+	.checkers-float:before {
+		font-size: 15px;
+		top: -20px;
+	}
 }
